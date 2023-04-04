@@ -29,14 +29,26 @@ const repairData = JSON.parse(localStorage.getItem(KEY_DATA));
     }
 }
 function writeInputToLocalStorage(event) {
+  // if (event.target.value = "") { return; }
+  console.log("event.target.value:", event.target.value);
   data[event.target.name] = event.target.value;
   localStorage.setItem(KEY_DATA, JSON.stringify(data));
 };
 
 function sendForm(event) {
   event.preventDefault();
+
+  if (data.email === "" || data.message === "")
+  { return };
+
   localStorage.removeItem(KEY_DATA);
   event.currentTarget.reset();
+
+  data = {
+     email:   "",
+     message: "",
+  };
+
   console.log("data after clear of feedback-form",data);
 };
 
